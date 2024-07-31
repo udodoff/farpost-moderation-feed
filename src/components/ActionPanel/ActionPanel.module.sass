@@ -1,0 +1,25 @@
+.actions
+    display: grid
+    grid-template-columns: 1fr auto
+    height: fit-content
+    gap: 8px
+    position: sticky
+    top: 20px
+    font-size: 14px
+
+.actionText
+    color: #000
+
+.actionHotkey
+    color: #777777
+    display: flex
+    gap: 6px
+    align-items: center
+
+    &::before
+        content: ""
+        background-color: var(--circleColor)
+        display: block
+        width: 6px
+        height: 6px
+        border-radius: 50%
