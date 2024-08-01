@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Brief.module.sass';
+import styles from './Bulletin.module.sass';
 import profileLogo from '../../assets/profile.svg';
 import clsx from 'clsx';
 
