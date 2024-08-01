@@ -15,14 +15,6 @@ const Modal = ({
         setRejectedBulletins(
             (previous) => new Set(previous.add({ id: selectedBriefId - 1, reason: reason }))
         );
-        setApprovedBulletins((previous) => {
-            previous.delete(selectedBriefId);
-            return new Set(previous);
-        });
-        setEscalatedBulletins((previous) => {
-            previous.delete(selectedBriefId);
-            return new Set(previous);
-        });
         setReason('');
     };
 

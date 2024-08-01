@@ -43,7 +43,18 @@ const Feed = () => {
 
             if (event.code === 'Space') {
                 setApprovedBulletins((previous) => new Set(previous.add(selectedBriefId)));
-                setRejectedBulletins((previous) => {
+                setRejectedBulletins(
+                    (previous) =>
+                        new Set([...previous].filter((brief) => brief.id !== selectedBriefId))
+                );
+                setEscalatedBulletins((previous) => {
+                    previous.delete(selectedBriefId);
+                    return new Set(previous);
+                });
+            }
+            if (event.key === 'Delete') {
+                setOpen(true);
+                setApprovedBulletins((previous) => {
                     previous.delete(selectedBriefId);
                     return new Set(previous);
                 });
@@ -52,15 +63,12 @@ const Feed = () => {
                     return new Set(previous);
                 });
             }
-            if (event.key === 'Delete') {
-                setOpen(true);
-            }
             if (event.key === 'Enter') {
                 setEscalatedBulletins((previous) => new Set(previous.add(selectedBriefId)));
-                setRejectedBulletins((previous) => {
-                    previous.delete(selectedBriefId);
-                    return new Set(previous);
-                });
+                setRejectedBulletins(
+                    (previous) =>
+                        new Set([...previous].filter((brief) => brief.id !== selectedBriefId))
+                );
                 setApprovedBulletins((previous) => {
                     previous.delete(selectedBriefId);
                     return new Set(previous);
@@ -140,6 +148,10 @@ const Feed = () => {
     };
 
     const handleBulletinClick = (event) => {
+        console.log(approvedBulletins);
+        console.log(rejectedBulletins);
+        console.log(escalatedBulletins);
+
         const { outmost } = findElemetHigherParent(event);
 
         selectedBrief.current = outmost;
